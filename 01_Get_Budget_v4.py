@@ -1,4 +1,4 @@
-"""Based on 01_Get_Budget_v2:
+"""Based on 01_Get_Budget_v3:
 ----- V1:
 Component asking user for their budget and checking if input hasn't been
 left blank
@@ -12,17 +12,21 @@ Error message now being included as second parameter when calling the function
 valid = "" and replacing it with True.
 Putting error message back inside the function so it wont have to be added
 when the function is called/used somewhere else.
+----- V4:
+Removed .isalpha because not_blank() function will be used for number and
+letter inputs. Adding "if not response or not response.isspace():" "so user
+doesn't input a space or leave it blank.
 """
 
 
 def not_blank(question):
     while True:
         response = input(question)
-        if not response.isalpha():
+        if not response or response.isspace():
             print("You can't leave this blank...")
         else:
             return response
 
 
 # ***** Main routine *****
-budget = not_blank("What is your budget?: $")
+budget = float(not_blank("What is your budget?: $"))
