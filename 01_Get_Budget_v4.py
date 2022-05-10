@@ -22,8 +22,8 @@ doesn't input a space or leave it blank.
 def not_blank(question):
     while True:
         response = input(question)
-        if not response or response.isspace():
-            print("You can't leave this blank...")
+        if not response or response.isspace():  # Checks input is not blank
+            print("You can't leave this blank...")  # Prints error message
         else:
             return response
 

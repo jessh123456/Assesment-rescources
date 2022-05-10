@@ -18,8 +18,8 @@ when the function is called/used somewhere else.
 def not_blank(question):
     while True:
         response = input(question)
-        if not response.isalpha():
-            print("You can't leave this blank...")
+        if not response.isalpha():  # Checks input
+            print("You can't leave this blank...")  # Prints error message
         else:
             return response
 
