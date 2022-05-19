@@ -10,32 +10,34 @@ string/letter to give appropriate error messages.
 """
 
 
-def not_blank(question):
+def not_blank(question):  # checks to make sure input is not blank
     while True:
-        response = input(question)
+        response = input(question)  # Gets input from user
         if not response or response.isspace():  # Checks input is not blank
             print("You can't leave this blank...")  # Prints error message
         else:
-            return response
+            return response  # returns response / project continues
 
 
-def valid_budget(budget_tester):
-    response = budget_tester
+def valid_budget(budget_tester):  # makes sure budget is within min and max
+    response = budget_tester  # using the previous input from the user
     while True:
-        try:
-            response = float(response)
-            if 0 < response <= 500:
-                return response
+        try:  # using try in case it doesnt work
+            response = float(response)  # converts into a float if a number
+            if 0 < response <= 500:  # Makes sure num is between min and max
+                return response   # program continues
             else:
-                print("Sorry, this number is not valid")
-                response = not_blank("What is your budget?: $")
-        except ValueError:
-            print("Sorry you must input a number")
-            response = not_blank("What is your budget?: $")
+                print("Sorry, this number is not valid")  # error message for
+                # a number that is not valid
+                response = not_blank("What is your budget?: $")  # re-asks user
+        except ValueError:  # if program doesn't work print an error
+            print("Sorry you must input a number")  # error message for an
+            # input which is not a number
+            response = not_blank("What is your budget?: $")  # re-asks user
 
 
 # ***** Main routine *****
-budget_testers = not_blank("What is your budget?: $")
+budget_testers = not_blank("What is your budget?: $")  # Calls function
 
-budget = valid_budget(budget_testers)
-print(budget)
+budget = valid_budget(budget_testers)  # calls function to check valid input
+print(budget)  # for testing purposes to make sure the program works
