@@ -1,7 +1,10 @@
 """ First breakdown
------ V1:
+----- Trial 1:
 Not testing for a invalid input at the moment, just getting the whole program
 to add things to the appropriate lists and perform correctly as required.
+NOTE: THIS PROGRAM WAS SCRAPPED HALFWAY BECAUSE A CLEAR SOLUTION WAS NOT
+OBVIOUS; THEREFORE HOURS WOULD HAVE BEEN WASTED ON A PROGRAM THAT FAILED TO
+WORK.
 """
 
 
