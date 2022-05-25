@@ -7,6 +7,8 @@ I want to use the 'budget_tester()' which is used in component 2 to check
 that the price inputted is valid. Therefore I have changed the name to
 'num_check()' so I can use it for both. This is the function I will use for the
 base and adjust component 2 to fit these changes.
+----- Version 2:
+I'm going to make the inputs more user friendly/attractive to the eye.
 """
 
 
@@ -46,9 +48,11 @@ price = ""
 price_list = []
 
 
-product_type = not_blank("Type of product: ").title()  # type of product
+product_type = not_blank("What is the name of the product that you wish to "
+                         "compare?: ").title()  # type of product
 while product_brand != "X":
-    product_brand = not_blank(f"brand ({brand_number}): ").title()  # Get
+    product_brand = not_blank(f"Please enter brand (number {brand_number}), "
+                              f"or press <x> to end loop: ").title()  # Get
     # the name of the product
     if product_brand == "X":  # Make sure user user doesn't want to exit
         break
@@ -59,8 +63,8 @@ while product_brand != "X":
         # ------------
         # This is where I will add in component 4 to call a function
         # ------------
-        price = not_blank("Price: ")  # ask for price and call not_blank()
-        price = num_check(price, "Price: ")  # check if integer and convert
+        price = not_blank("What is the price?: ")  # ask for price and call not_blank()
+        price = num_check(price, "What is the price?: ")  # check if integer and convert
         # to float
         price_list.append(price)  # if valid, add to list
 print(product_type, product_brands_list, price_list)
