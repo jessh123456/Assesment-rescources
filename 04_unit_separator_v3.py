@@ -24,42 +24,34 @@ def not_blank(question):  # checks to make sure input is not blank
 
 
 def unit_error(product_units, user_input):
-    valid = ""
-    while not valid:
-        unit_extractor = "".join((ch if ch in "mliterkogams" else " ") for ch
-                                 in user_input)  # extracting letters that make
-        # up the possible inputs in product_units e.g. "kilos" or "litre"
-        units = unit_extractor.replace(" ", "")
-        for list_item in product_units:
-            if units in list_item:
-                units = list_item[0]
-                return units
-
-        print("Sorry, we are only able to calculate 'g', 'mg', 'l', "
-              "and 'ml'")
-        print(units)
-        user_input = input("Please enter the quantity (Use units e.g. 'ml'"
-                           " or 'g'): ").lower()
+    unit_extractor = "".join((ch if ch in "mliterkogams" else " ") for ch
+                              in user_input)  # extracting letters that make
+    # up the possible inputs in product_units e.g. "kilos" or "litre"
+    units = unit_extractor.replace(" ", "")
+    for list_item in product_units:
+        if units in list_item:
+            units = list_item[0]
+            return units
+    print("Sorry, we are only able to calculate 'g', 'mg', 'l', "
+          "and 'ml'")
+    return "false"
 
 
 def amount_error(user_input):
-    valid = ""
-    while not valid:
-        num_extractor = ''.join((ch if ch in '0123456789.' else ' ') for ch in
+    num_extractor = ''.join((ch if ch in '0123456789.-' else ' ') for ch in
                                 user_input)  # extracting numbers 0123456789.
-        number = num_extractor.replace(" ", "")
-        try:
-            number = float(number)  # convert to float
-            if 10000 > number > 0:
-                return number
-            else:
-                print("Sorry, that quantity isn't valid. "
-                      "(min = 0, max = 10000)")
-                return "false"
-        except ValueError:
-            print("Sorry you must enter a number and unit for the quantity.")
-            user_input = input("Please enter the quantity (Use units e.g. 'ml'"
-                               " or 'g'): ").lower()
+    number = num_extractor.replace(" ", "")
+    try:
+        number = float(number)  # convert to float
+        if 10000 > number > 0:
+            return number
+        else:
+            print("Sorry, that quantity isn't valid. "
+                  "(min = 0, max = 10000)")
+            return "false"
+    except ValueError:
+        print("Sorry you must enter a number and unit for the quantity.")
+        return "false"
 
 
 # ***** Main routine *****
@@ -78,7 +70,8 @@ while valid != 1:
     value_input = input("Please enter the quantity (Use units e.g. 'ml' "
                         "or 'g'): ").lower()
     unit = unit_error(products_units, value_input)
-    amount = amount_error(value_input)
+    if unit != "false":
+        amount = amount_error(value_input)
     if amount != "false":
         valid += 1
 print(unit, amount)
