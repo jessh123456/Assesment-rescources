@@ -63,8 +63,8 @@ while product_brand != "X":
         # ------------
         # This is where I will add in component 4 to call a function
         # ------------
-        price = not_blank("What is the price?: ")  # ask for price and call not_blank()
-        price = num_check(price, "What is the price?: ")  # check if integer and convert
-        # to float
+        price = not_blank("What is the price?: ")  # get price-call not_blank()
+        price = num_check(price, "What is the price?: $")  # check if integer
+        # and convert to float
         price_list.append(price)  # if valid, add to list
 print(product_type, product_brands_list, price_list)
