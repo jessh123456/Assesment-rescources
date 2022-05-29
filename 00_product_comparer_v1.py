@@ -46,6 +46,37 @@ def num_check(input, question):  # makes sure input is within min and max
             response = not_blank(question)  # re-asks user
 
 
+def unit_error(product_units, user_input):  # function to test for a valid unit
+    unit_extractor = "".join((ch if ch in "mliterkogams" else " ") for ch
+                              in user_input)  # extracting letters that make
+    # up the possible inputs in product_units e.g. "kilos" or "litre"
+    units = unit_extractor.replace(" ", "")  # removing spaces
+    for list_item in product_units:
+        if units in list_item:  # if the input is valid (in product units)
+            units = list_item[0]
+            return units
+    print("Sorry, we are only able to calculate 'g', 'mg', 'l', "
+          "and 'ml'")  # error message if not in product units
+    return "false"  # Return the message if the input is invalid
+
+
+def amount_error(user_input):  # function to test for a valid amount
+    num_extractor = ''.join((ch if ch in '0123456789.-' else ' ') for ch in
+                                user_input)  # extracting numbers 0123456789.
+    number = num_extractor.replace(" ", "")  # removes spaces
+    try:
+        number = float(number)  # convert to float if possible
+        if 10000 > number > 0:  # check if number is between min and max
+            return number
+        else:  # if number outside min and max:
+            print("Sorry, that quantity isn't valid. "  
+                  "(min = 0, max = 10000)")  # prints error message
+            return "false"  # Return the message if the input is invalid
+    except ValueError:  # if not a number:
+        print("Sorry you must enter a number and unit for the quantity.")
+        return "false"  # Return the message if the input is invalid
+
+
 # ***** Main routine *****
 # --- Brands ---
 product_brand = ""
@@ -54,10 +85,16 @@ brand_number = 1
 # --- Price ---
 price = ""
 price_list = []
+# --- Units ---
+unit = ""
+products_units = [["g", "grams", "gm"], ["kg", "kilo", "kilos", "kilograms"],
+                  ["l", "liter", "liters", "litre", "litres"],
+                  ["ml", "milliliter", "millilitre"]]  # list of possible units
+amount = ""
+valid = 0  # for unit and amount collector
 
 budget_testers = not_blank("What is your budget?: $")  # Calls function
 budget = valid_budget(budget_testers)  # calls function to check valid input
-print(budget)  # for testing purposes to make sure the program works
 product_type = not_blank("What is the name of the product that you wish to "
                          "compare?: ").title()  # type of product
 while product_brand != "X":
@@ -70,12 +107,18 @@ while product_brand != "X":
         brand_number += 1  # to count the number of brands and can be used when
         # extracting information from a list.
         product_brands_list.append(product_brand)  # add product to list
-        # ------------
-        # This is where I will add in component 4 to call a function
-        # ------------
+        while valid != 1:  # loop the code until a valid input has been entered
+            value_input = input("Please enter the quantity (Use units e.g. 'ml' "
+                                "or 'g'): ").lower()
+            unit = unit_error(products_units, value_input)
+            if unit != "false":  # if either doesn't return false, continue the
+                # program
+                amount = amount_error(value_input)
+            if amount != "false":
+                valid += 1
         price = not_blank("What is the price?: ")  # ask for price and call
         # not_blank()
-        price = num_check(price, "What is the price?: ")  # check if integer
+        price = num_check(price, "What is the price?: $")  # check if integer
         # and convert to float
         price_list.append(price)  # if valid, add to list
 print(product_type, product_brands_list, price_list)
