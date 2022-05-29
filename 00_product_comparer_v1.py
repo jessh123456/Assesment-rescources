@@ -1,5 +1,12 @@
-"""
+"""  Added:
+01_Get_Budget_v4,
+02_valid_budget_trial2,
+03_product_specs_v3,
+and 04_unit_separator_v3.
 
+However the quantities collected by 04_unit_separator_v3 haven't been added to
+a list. This will be done in the next component as I will need to convert
+ml and kg into g and l for easier comparison in the future.
 """
 
 
