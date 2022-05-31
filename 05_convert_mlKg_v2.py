@@ -14,6 +14,14 @@ ml = 0.001
 amount = 0  # these values are just for testing purposes
 amount_list = []  # list to store converted rates
 
+# Below was stuff added later on. this is going to be used for component 7.
+g_or_l = ""  # finding if they use grams or liters
+
+if unit == "kg" or "g":
+    g_or_l = "g"
+elif unit == "ml" or "l":
+    g_or_l = "l"
+
 if unit == "kg":  # if kg, convert to g
     amount = amount*1000
 elif unit == "ml":  # if mL, convert to L
@@ -21,5 +29,7 @@ elif unit == "ml":  # if mL, convert to L
 
 amount_list.append(amount)  # add to list
 print(amount_list)  # for testing purposes
+
+
 
 
