@@ -8,6 +8,8 @@ and re-arranged the code to fit my own.
 ----- V2:
 Including brand list to relate the cheapest and most expensive items back to
 their actual brand.
+----- V3:
+Rounding average unit price and unit prices to 2dp
 """
 
 
@@ -15,7 +17,7 @@ def calc_average(amounts):  # function that calculates the average unit price
     sum_num = 0
     for t in amounts:
         sum_num = sum_num + t
-    avg = sum_num / len(amounts)
+    avg = f"{sum_num / len(amounts):,.2f}"  # round to 2 dp
     return avg  # returns average
 
 
@@ -25,8 +27,8 @@ def unit_value(amounts, prices):  # calculates unit prices
     while place != len(amounts):  # loop until end of list
         amount_item = amounts[place]
         price_item = prices[place]
-        unit_price = price_item/amount_item  # divides price by amount
-        unit_price_list.append(unit_price)
+        unit_price = f"{price_item / amount_item:,.2f}"  # price/amount
+        unit_price_list.append(float(unit_price))
         place += 1
     return unit_price_list  # returns the list
 
