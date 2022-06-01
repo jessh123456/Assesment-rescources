@@ -12,6 +12,8 @@ Also turns the dollar sign adder into a function as i will need it for unit
 prices and prices.
 When displaying the cheapest and most expensive brand I have added their unit
 price to make it easier for the user.
+----- V4:
+Adding a budget checker
 """
 
 import pandas
