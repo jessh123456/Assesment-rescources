@@ -65,3 +65,4 @@ print(f"Most expensive brand: *{expensive_brand}* "
 print(f"Average unit price: ${average_unit_price}")  # display avg unit price
 print("***************************************")
 
+
