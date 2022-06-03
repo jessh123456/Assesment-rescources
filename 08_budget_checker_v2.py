@@ -6,6 +6,7 @@ not and recommend which item they should buy.
 Wondered why it would print the wrong brand. This was because I changed
 the order of the unit_value_list. Now I will use the .copy() method to fix this
  issue
+ADDED recommended = product_brands_list[location] TO BE EXPORTED IN COMPONENT 9
 """
 
 
@@ -35,12 +36,14 @@ while count != len(ordered_price_list):  # loop through all prices
         print(f"With a budget of ${budget}, we recommend the brand: "
               f"*{product_brands_list[location]}*\nThis is because it is the "
               f"cheapest option whilst still being within your budget.")
+        recommended = product_brands_list[location]  # FOR COMPONENT 9
         break
     elif budget == test_price:  # if equal to budget
         print(f"With a budget of ${budget}, we recommend the brand: "
               f"*{product_brands_list[location]}*\nThis is because it is the "
               f"cheapest option whilst still being within your budget."
               f" \n!!ALTHOUGH!!, this is the limit of your budget!")
+        recommended = product_brands_list[location]  # FOR COMPONENT 9
         break
     elif budget < test_price:  # if more than budget
         count += 1  # loop the code
